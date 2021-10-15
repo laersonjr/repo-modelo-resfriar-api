@@ -40,7 +40,7 @@ public class Titulo {
 	
 	@NotBlank(message = "Descrição obrigatória!!")
 	@Size(max = 128, message = "A descrição deve ter no máximo 128 caracteres.")
-	private String descricao;
+	private String acao;
 	
 	@NotNull(message = "Data de vencimento obrigatória!!")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -88,12 +88,12 @@ public class Titulo {
 		this.codigo = codigo;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getAcao() {
+		return acao;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setAcao(String acao) {
+		this.acao = acao;
 	}
 
 	public Date getDataVencimento() {
