@@ -32,10 +32,10 @@ public class CadastroTituloService {
 
 	public String receber(Long codigo) {
 		Titulo titulo = tituloRepository.getOne(codigo);
-		titulo.setStatus(StatusTitulo.RECEBIDO);
+		titulo.setStatus(StatusTitulo.CONCLUÍDO);
 		tituloRepository.save(titulo);
 		
-		return StatusTitulo.RECEBIDO.getDescricao();
+		return StatusTitulo.CONCLUÍDO.getDescricao();
 	}
 	
 	public List<Titulo> filtrar(TituloFilter filtro){

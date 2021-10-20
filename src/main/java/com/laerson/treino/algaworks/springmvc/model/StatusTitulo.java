@@ -3,7 +3,7 @@ package com.laerson.treino.algaworks.springmvc.model;
 public enum StatusTitulo {
 	
 	PENDENTE("Pendente"),
-	RECEBIDO("Recebido");
+	CONCLUÍDO("Concluído");
 	
 	private String descricao;
 	

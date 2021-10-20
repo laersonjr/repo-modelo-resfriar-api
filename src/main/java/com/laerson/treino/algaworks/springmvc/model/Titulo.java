@@ -36,10 +36,11 @@ public class Titulo {
 	private String motivo;
 	
 	@NotBlank(message = "Setor obrigatório!!")
+	@Size(min = 1, max = 32, message = "Setor do chamado deve conter de 1 a 32 caracteres.")
 	private String setor;
 	
-	@NotBlank(message = "Descrição obrigatória!!")
-	@Size(max = 128, message = "A descrição deve ter no máximo 128 caracteres.")
+	@NotBlank(message = "Ação realizada obrigatória!!")
+	@Size(max = 128, message = "A ação realizada deve ter no máximo 128 caracteres.")
 	private String acao;
 	
 	@NotNull(message = "Data de vencimento obrigatória!!")
