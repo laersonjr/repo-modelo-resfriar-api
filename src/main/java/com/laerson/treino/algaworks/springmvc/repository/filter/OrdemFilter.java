@@ -1,6 +1,6 @@
 package com.laerson.treino.algaworks.springmvc.repository.filter;
 
-public class TituloFilter {
+public class OrdemFilter {
 	
 	private String cliente;
 

@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.laerson.algaworks.springMVC</groupId>
-	<artifactId>repo-treino-pagamento-api</artifactId>
+	<artifactId>repo-modelo-resfriarEng-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>repo-treino-pagamento-api</name>
+	<name>repo-modelo-resfriarEng-api</name>
 	<description>Curso Começando com Spring MVC da Algaworks</description>
 	<properties>
 		<java.version>11</java.version>
@@ -64,6 +64,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

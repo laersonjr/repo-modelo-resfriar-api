@@ -3,8 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-			 <img alt="AlgaWorks"
-				th:src="@{/images/resfriar-eng-new.png}" />
-
+<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+	<span th:text="${mensagem}"></span>
+</div>
 
 </html>

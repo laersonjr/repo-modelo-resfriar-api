@@ -1,13 +1,13 @@
 package com.laerson.treino.algaworks.springmvc.model;
 
-public enum StatusTitulo {
+public enum StatusOrdem {
 	
 	PENDENTE("Pendente"),
 	CONCLUÍDO("Concluído");
 	
 	private String descricao;
 	
-	StatusTitulo(String descricao) {
+	StatusOrdem(String descricao) {
 		this.descricao = descricao;
 	}
 	

@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 @Entity
-public class Titulo {
+public class Ordem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +55,7 @@ public class Titulo {
 	private BigDecimal valor;
 	
 	@Enumerated(EnumType.STRING)
-	private StatusTitulo status;
+	private StatusOrdem status;
 
 	public Long getCodigo() {
 		return codigo;
@@ -113,16 +113,16 @@ public class Titulo {
 		this.valor = valor;
 	}
 
-	public StatusTitulo getStatus() {
+	public StatusOrdem getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusTitulo status) {
+	public void setStatus(StatusOrdem status) {
 		this.status = status;
 	}
 	
 	public boolean isPendente() {
-		return StatusTitulo.PENDENTE.equals(status);
+		return StatusOrdem.PENDENTE.equals(status);
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class Titulo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Titulo other = (Titulo) obj;
+		Ordem other = (Ordem) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

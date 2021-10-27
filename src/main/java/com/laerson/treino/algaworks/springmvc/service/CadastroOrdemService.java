@@ -6,19 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.laerson.treino.algaworks.springmvc.model.StatusTitulo;
-import com.laerson.treino.algaworks.springmvc.model.Titulo;
-import com.laerson.treino.algaworks.springmvc.repository.TituloRepository;
-import com.laerson.treino.algaworks.springmvc.repository.filter.TituloFilter;
+import com.laerson.treino.algaworks.springmvc.model.StatusOrdem;
+import com.laerson.treino.algaworks.springmvc.model.Ordem;
+import com.laerson.treino.algaworks.springmvc.repository.OrdemRepository;
+import com.laerson.treino.algaworks.springmvc.repository.filter.OrdemFilter;
 
 
 @Service
-public class CadastroTituloService {
+public class CadastroOrdemService {
 
 	@Autowired
-	private TituloRepository tituloRepository;
+	private OrdemRepository tituloRepository;
 
-	public void salvar(Titulo titulo) {
+	public void salvar(Ordem titulo) {
 		try {
 			tituloRepository.save(titulo);
 		} catch (DataIntegrityViolationException e) {
@@ -31,14 +31,14 @@ public class CadastroTituloService {
 	}
 
 	public String receber(Long codigo) {
-		Titulo titulo = tituloRepository.getOne(codigo);
-		titulo.setStatus(StatusTitulo.CONCLUÍDO);
+		Ordem titulo = tituloRepository.getOne(codigo);
+		titulo.setStatus(StatusOrdem.CONCLUÍDO);
 		tituloRepository.save(titulo);
 		
-		return StatusTitulo.CONCLUÍDO.getDescricao();
+		return StatusOrdem.CONCLUÍDO.getDescricao();
 	}
 	
-	public List<Titulo> filtrar(TituloFilter filtro){
+	public List<Ordem> filtrar(OrdemFilter filtro){
 		String cliente = filtro.getCliente() == null ? "" : filtro.getCliente();
 		return tituloRepository.findByClienteContaining(cliente);
 	}

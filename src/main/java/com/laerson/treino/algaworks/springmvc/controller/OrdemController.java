@@ -15,39 +15,39 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.laerson.treino.algaworks.springmvc.model.StatusTitulo;
-import com.laerson.treino.algaworks.springmvc.model.Titulo;
-import com.laerson.treino.algaworks.springmvc.repository.TituloRepository;
-import com.laerson.treino.algaworks.springmvc.repository.filter.TituloFilter;
-import com.laerson.treino.algaworks.springmvc.service.CadastroTituloService;
+import com.laerson.treino.algaworks.springmvc.model.StatusOrdem;
+import com.laerson.treino.algaworks.springmvc.model.Ordem;
+import com.laerson.treino.algaworks.springmvc.repository.OrdemRepository;
+import com.laerson.treino.algaworks.springmvc.repository.filter.OrdemFilter;
+import com.laerson.treino.algaworks.springmvc.service.CadastroOrdemService;
 
 @Controller
 @RequestMapping("/titulos")
-public class TituloController {
+public class OrdemController {
 	
 	private static final String CADASTRO_VIEW = "CadastroTitulo";
 	
 	@Autowired
-	private TituloRepository tituloRepository;
+	private OrdemRepository ordemRepository;
 	
 	@Autowired
-	private CadastroTituloService cadastroTituloService;
+	private CadastroOrdemService cadastroOrdemService;
 
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
-		mv.addObject(new Titulo());
+		mv.addObject(new Ordem());
 		return mv;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes) {
+	public String salvar(@Validated Ordem titulo, Errors errors, RedirectAttributes attributes) {
 		if (errors.hasErrors()) {
 			return CADASTRO_VIEW;
 		}
 		try {
-		cadastroTituloService.salvar(titulo);
-		attributes.addFlashAttribute("mensagem", "Título salvo com sucesso!");
+		cadastroOrdemService.salvar(titulo);
+		attributes.addFlashAttribute("mensagem", "Ordem de serviço salva com sucesso!");
 		return "redirect:/titulos/novo";
 		} catch(IllegalArgumentException e) {
 			errors.rejectValue("dataVencimento", null, e.getMessage());
@@ -69,8 +69,8 @@ public class TituloController {
 //	}
 
 	@RequestMapping
-	public ModelAndView pesquisar(@ModelAttribute("filtro") TituloFilter filtro) {
-		List<Titulo> todosTitulos = cadastroTituloService.filtrar(filtro);
+	public ModelAndView pesquisar(@ModelAttribute("filtro") OrdemFilter filtro) {
+		List<Ordem> todosTitulos = cadastroOrdemService.filtrar(filtro);
 		
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
 		mv.addObject("titulos", todosTitulos);
@@ -80,7 +80,7 @@ public class TituloController {
 	@RequestMapping("{codigo}")
 	public ModelAndView edicao(@PathVariable("codigo") Long codigoTitulo) {
 		@SuppressWarnings("deprecation")
-		Titulo titulo = tituloRepository.getOne(codigoTitulo);
+		Ordem titulo = ordemRepository.getOne(codigoTitulo);
 		
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW); 
 		mv.addObject(titulo);
@@ -89,7 +89,7 @@ public class TituloController {
 	
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
-		cadastroTituloService.excluir(codigo);
+		cadastroOrdemService.excluir(codigo);
 		
 		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
 		return "redirect:/titulos";
@@ -97,13 +97,13 @@ public class TituloController {
 	
 	@RequestMapping(value = "/{codigo}/receber", method = RequestMethod.PUT)
 	public @ResponseBody String receber(@PathVariable Long codigo) {
-		return cadastroTituloService.receber(codigo);
+		return cadastroOrdemService.receber(codigo);
 		 
 	}
 
-	@ModelAttribute("todosStatusTitulo")
-	public List<StatusTitulo> listaDosStatus() {
-		return Arrays.asList(StatusTitulo.values());
+	@ModelAttribute("todosStatusOrdem")
+	public List<StatusOrdem> listaDosStatus() {
+		return Arrays.asList(StatusOrdem.values());
 	}
 
 }

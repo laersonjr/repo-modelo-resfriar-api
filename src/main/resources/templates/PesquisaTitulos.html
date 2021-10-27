@@ -52,31 +52,31 @@
 						</tr>
 				</thead>
 				<tbody>
-						<tr th:each="titulo : ${titulos}">
-		   					<td class="text-center" th:text="${titulo.codigo}">1</td>
-		   					<td class="text-center" th:text="${titulo.cliente}"></td>
-		   					<td class="text-center" th:text="${titulo.motivo}"></td>
-		   					<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
-		   					<td class="text-center" th:text="|R$ ${{titulo.valor}}|"></td>
-		   					<td class="text-center" th:attr="data-role=${titulo.codigo}">
-								<span class="label" th:text="${titulo.status.descricao}"
-									th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"></span>
+						<tr th:each="ordem : ${titulos}">
+		   					<td class="text-center" th:text="${ordem.codigo}">1</td>
+		   					<td class="text-center" th:text="${ordem.cliente}"></td>
+		   					<td class="text-center" th:text="${ordem.motivo}"></td>
+		   					<td class="text-center" th:text="${{ordem.dataVencimento}}"></td>
+		   					<td class="text-center" th:text="|R$ ${{ordem.valor}}|"></td>
+		   					<td class="text-center" th:attr="data-role=${ordem.codigo}">
+								<span class="label" th:text="${ordem.status.descricao}"
+									th:classappend="${ordem.pendente ? 'label-danger' : 'label-success'}"></span>
 								<!--  th:classappend="${#strings.toString(titulo.status) == 'PENDENTE' ? 'label-danger' : '	label-success'}"></span> -->
 							</td>
 							<td class="text-center">
-									<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
+									<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${ordem.codigo})}"
 										title="Editar" rel="tooltip" data-placement="top">
 		   								<span class="glyphicon glyphicon-pencil"></span>
 									</a>
 									<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
-		   								th:attr="data-codigo=${titulo.codigo}, data-cliente=${titulo.cliente}"
+		   								th:attr="data-codigo=${ordem.codigo}, data-cliente=${ordem.cliente}"
 		   								title="Excluir" rel="tooltip" data-placement="top">
 		   								<span class="glyphicon glyphicon-remove"></span>
 	   								</a>
-	   								<a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}"
+	   								<a class="btn btn-link btn-xs js-atualizar-status" th:if="${ordem.pendente}"
 	   								title="Receber" rel="tooltip" data-placement="top"
-	   								th:attr="data-codigo=${titulo.codigo}"
-	   								th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
+	   								th:attr="data-codigo=${ordem.codigo}"
+	   								th:href="@{/titulos/{codigo}/receber(codigo=${ordem.codigo})}">
 	   									<span class="glyphicon glyphicon-check"></span>
 	   								</a>
 							 </td>
