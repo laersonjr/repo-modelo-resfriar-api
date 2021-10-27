@@ -28,7 +28,7 @@ public class RepoTreinoPagamentoApiApplication {
 		
 		@Override
 		public void addViewControllers(ViewControllerRegistry registry) {
-			registry.addRedirectViewController("/", "/titulos");
+			registry.addRedirectViewController("/", "/ordens");
 		}
 		
 	}

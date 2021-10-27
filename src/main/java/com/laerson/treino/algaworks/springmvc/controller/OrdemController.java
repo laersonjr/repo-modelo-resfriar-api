@@ -22,7 +22,7 @@ import com.laerson.treino.algaworks.springmvc.repository.filter.OrdemFilter;
 import com.laerson.treino.algaworks.springmvc.service.CadastroOrdemService;
 
 @Controller
-@RequestMapping("/titulos")
+@RequestMapping("/ordens")
 public class OrdemController {
 	
 	private static final String CADASTRO_VIEW = "CadastroTitulo";
@@ -48,7 +48,7 @@ public class OrdemController {
 		try {
 		cadastroOrdemService.salvar(titulo);
 		attributes.addFlashAttribute("mensagem", "Ordem de serviço salva com sucesso!");
-		return "redirect:/titulos/novo";
+		return "redirect:/ordens/novo";
 		} catch(IllegalArgumentException e) {
 			errors.rejectValue("dataVencimento", null, e.getMessage());
 			return CADASTRO_VIEW;
@@ -70,10 +70,10 @@ public class OrdemController {
 
 	@RequestMapping
 	public ModelAndView pesquisar(@ModelAttribute("filtro") OrdemFilter filtro) {
-		List<Ordem> todosTitulos = cadastroOrdemService.filtrar(filtro);
+		List<Ordem> todosOrdens = cadastroOrdemService.filtrar(filtro);
 		
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
-		mv.addObject("titulos", todosTitulos);
+		mv.addObject("ordens", todosOrdens);
 		return mv;
 	}
 	
@@ -92,7 +92,7 @@ public class OrdemController {
 		cadastroOrdemService.excluir(codigo);
 		
 		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
-		return "redirect:/titulos";
+		return "redirect:/ordens";
 	}
 	
 	@RequestMapping(value = "/{codigo}/receber", method = RequestMethod.PUT)

@@ -15,13 +15,13 @@
 		<div class="panel-heading">
 			<div class="clearfix">
 	   			<h1 class="panel-title aw-titulo-panel">Pesquisa de ordem de serviço</h1>
-	   			<a class="btn btn-link aw-link-panel" th:href="@{/titulos/novo}">Nova ordem de serviço</a>
+	   			<a class="btn btn-link aw-link-panel" th:href="@{/ordens/novo}">Nova ordem de serviço</a>
 	   		</div>
 	   	</div>
 
 		<div class="panel-body">
 		
-			<form method="GET" class="form-horizontal" th:action="@{/titulos}" th:object="${filtro}">
+			<form method="GET" class="form-horizontal" th:action="@{/ordens}" th:object="${filtro}">
 				<div class="form-group">
 					<div class="col-sm-4">
 						<div class="input-group">
@@ -52,7 +52,7 @@
 						</tr>
 				</thead>
 				<tbody>
-						<tr th:each="ordem : ${titulos}">
+						<tr th:each="ordem : ${ordens}">
 		   					<td class="text-center" th:text="${ordem.codigo}">1</td>
 		   					<td class="text-center" th:text="${ordem.cliente}"></td>
 		   					<td class="text-center" th:text="${ordem.motivo}"></td>
@@ -64,7 +64,7 @@
 								<!--  th:classappend="${#strings.toString(titulo.status) == 'PENDENTE' ? 'label-danger' : '	label-success'}"></span> -->
 							</td>
 							<td class="text-center">
-									<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${ordem.codigo})}"
+									<a class="btn btn-link btn-xs" th:href="@{/ordens/{codigo}(codigo=${ordem.codigo})}"
 										title="Editar" rel="tooltip" data-placement="top">
 		   								<span class="glyphicon glyphicon-pencil"></span>
 									</a>
@@ -76,13 +76,13 @@
 	   								<a class="btn btn-link btn-xs js-atualizar-status" th:if="${ordem.pendente}"
 	   								title="Receber" rel="tooltip" data-placement="top"
 	   								th:attr="data-codigo=${ordem.codigo}"
-	   								th:href="@{/titulos/{codigo}/receber(codigo=${ordem.codigo})}">
+	   								th:href="@{/ordens/{codigo}/receber(codigo=${ordem.codigo})}">
 	   									<span class="glyphicon glyphicon-check"></span>
 	   								</a>
 							 </td>
 						</tr>
 	 					<tr>
-							<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum título foi encontrado</td>
+							<td colspan="6" th:if="${#lists.isEmpty(ordens)}">Nenhum título foi encontrado</td>
 						</tr>
 				</tbody>
 			</table>
